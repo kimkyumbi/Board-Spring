@@ -12,7 +12,7 @@ public class DeletePostServiceImpl implements DeletePostService {
     private final PostRepository postRepository;
 
     public void deletePost(Long id) {
-        PostEntity postEntity = postRepository.findById(id).orElse(null);
+        PostEntity postEntity = postRepository.findById(id).orElseThrow(RuntimeException::new);
         postRepository.delete(postEntity);
     }
 }

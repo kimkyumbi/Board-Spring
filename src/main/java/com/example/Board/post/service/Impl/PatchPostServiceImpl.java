@@ -13,7 +13,7 @@ public class PatchPostServiceImpl implements PatchPostService {
     private final PostRepository postRepository;
 
     public void execute(PatchPostRequest patchPostRequest, Long id) {
-        PostEntity postEntity = postRepository.findById(id).orElse(null);
+        PostEntity postEntity = postRepository.findById(id).orElseThrow(RuntimeException::new);
 
         postEntity.updatePost(patchPostRequest);
 
