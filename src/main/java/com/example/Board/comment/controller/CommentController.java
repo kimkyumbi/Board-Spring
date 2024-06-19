@@ -14,7 +14,7 @@ public class CommentController {
 
     @PostMapping("/{id}")
     public ResponseEntity<CommentRequest> comment (
-            @PathVariable Long id,
+            @PathVariable(name = "id") Long id,
             @RequestBody CommentRequest commentRequest
     ) {
         commentService.execute(commentRequest, id);
