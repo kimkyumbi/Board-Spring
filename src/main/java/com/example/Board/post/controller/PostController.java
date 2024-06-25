@@ -5,6 +5,7 @@ import com.example.Board.post.dto.request.PostRequestDTO;
 import com.example.Board.post.dto.response.GetPostResponse;
 import com.example.Board.post.dto.response.PostDTO;
 import com.example.Board.post.service.*;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class PostController {
     private final GetPostByIdService getPostByIdService;
 
     @PostMapping
-    public ResponseEntity<Void> writePost(@RequestBody PostRequestDTO requestDTO) {
+    public ResponseEntity<Void> writePost(@RequestBody @Valid PostRequestDTO requestDTO) {
         postWriteService.execute(requestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

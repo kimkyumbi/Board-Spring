@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
 
-    public void execute(CommentRequest commentRequest, Long postId) {
+    public void execute(CommentRequest commentPost, Long postId) {
         CommentEntity comment = CommentEntity.builder()
-                .text(commentRequest.getText())
+                .text(commentPost.getText())
                 .build();
 
         commentRepository.save(comment);

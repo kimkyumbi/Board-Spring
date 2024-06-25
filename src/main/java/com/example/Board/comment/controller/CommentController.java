@@ -12,12 +12,20 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
     private final CommentService commentService;
 
-    @PostMapping("/{id}")
+    @PostMapping("/{post_id}")
     public ResponseEntity<CommentRequest> comment (
-            @PathVariable(name = "id") Long id,
+            @PathVariable(name = "post_id") Long id,
             @RequestBody CommentRequest commentRequest
     ) {
         commentService.execute(commentRequest, id);
         return ResponseEntity.ok().build();
     }
+
+//    @PostMapping("/{comment_id}")
+//    public ResponseEntity<CommentRequest> parentComment (
+//            @PathVariable(name = "comment_id") Long id,
+//            @RequestBody CommentRequest commentRequest
+//    ) {
+//
+//    }
 }

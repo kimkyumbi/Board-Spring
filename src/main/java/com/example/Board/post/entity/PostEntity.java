@@ -32,4 +32,8 @@ public class PostEntity {
         this.title = update.getTitle();
         this.content = update.getContent();
     }
+
+    public void visits () {
+        this.visit = visit + 1;
+    }
 }

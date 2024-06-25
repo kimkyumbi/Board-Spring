@@ -14,12 +14,13 @@ public class GetPostByIdServiceImpl implements GetPostByIdService {
 
     public GetPostResponse execute(Long id) {
         PostEntity postEntity = postRepository.findById(id).orElseThrow(RuntimeException::new);
-        postEntity.setVisit(postEntity.getVisit() + 1);
+        postEntity.visits();
         postRepository.save(postEntity);
         return GetPostResponse.builder()
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
                 .visit(postEntity.getVisit())
+                .comments(postEntity.getComment())
                 .build();
     }
 }
