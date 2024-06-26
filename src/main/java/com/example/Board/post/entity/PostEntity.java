@@ -5,6 +5,7 @@ import com.example.Board.post.dto.request.PatchPostRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,8 +26,8 @@ public class PostEntity {
     private String content;
     private int visit;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
-    private List<CommentEntity> comment;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private List<CommentEntity> comments;
 
     public void updatePost (PatchPostRequest update) {
         this.title = update.getTitle();

@@ -1,5 +1,7 @@
 package com.example.Board.post.service.Impl;
 
+import com.example.Board.comment.entity.CommentEntity;
+import com.example.Board.comment.repository.CommentRepository;
 import com.example.Board.post.entity.PostEntity;
 import com.example.Board.post.repository.PostRepository;
 import com.example.Board.post.service.GetPostByIdService;
@@ -20,7 +22,7 @@ public class GetPostByIdServiceImpl implements GetPostByIdService {
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
                 .visit(postEntity.getVisit())
-                .comments(postEntity.getComment())
+                .comments(postEntity.getComments())
                 .build();
     }
 }
