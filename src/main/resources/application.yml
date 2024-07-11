@@ -14,6 +14,12 @@ spring:
     username: root
     password: ${DB_PASSWORD}
 
+  jwt:
+    secretKey: ${SECRET_KEY}
+    refreshKey: ${REFRESH_KEY}
+    accessExp: ${ACCESS_EXP}
+    refreshEXP: ${REFRESH_EXP}
+
   jpa:
     hibernate:
       ddl-auto: update
