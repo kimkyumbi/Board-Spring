@@ -18,7 +18,7 @@ spring:
     secretKey: ${SECRET_KEY}
     refreshKey: ${REFRESH_KEY}
     accessExp: ${ACCESS_EXP}
-    refreshEXP: ${REFRESH_EXP}
+    refreshExp: ${REFRESH_EXP}
 
   jpa:
     hibernate:

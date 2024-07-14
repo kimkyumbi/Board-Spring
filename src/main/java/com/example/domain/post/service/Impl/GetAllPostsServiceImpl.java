@@ -14,13 +14,16 @@ import java.util.List;
 public class GetAllPostsServiceImpl implements GetAllPostsService {
     private final PostRepository postRepository;
 
+    // 게시물 리스트를 반환하는 메서드
     public List<PostDTO> getAllPost() {
+        // PostEntity 객체를 List로 생성하고 postRepository에서 모든 게시물을 가져옴
         List<PostEntity> postEntities = postRepository.findAll();
 
+        // postEntities 객체를 스트림으로 변환하고 람다식을 이용해 PostDTO 객체로 매핑하고 리스트로 변환
         return postEntities.stream().map(postEntity -> new PostDTO(
-                postEntity.getId(),
-                postEntity.getTitle(),
-                postEntity.getVisit()
+                postEntity.getId(),    // 게시물 아이디
+                postEntity.getTitle(), // 게시물 제목
+                postEntity.getVisit()  // 게시물 조회수
         )).toList();
     }
 }

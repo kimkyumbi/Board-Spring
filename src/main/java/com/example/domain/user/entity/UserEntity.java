@@ -14,7 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity {
+    // PK
     @Id
+    // 자동으로 id 생성
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
