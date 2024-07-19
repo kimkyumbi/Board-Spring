@@ -14,18 +14,10 @@ public class CommentController {
 
     @PostMapping("/{post_id}")
     public ResponseEntity<CommentRequest> comment (
-            @PathVariable(name = "post_id") Long id,
+            @PathVariable(name = "post_id") Long postId,
             @RequestBody CommentRequest commentRequest
     ) {
-        commentService.execute(commentRequest, id);
+        commentService.execute(commentRequest, postId);
         return ResponseEntity.ok().build();
     }
-
-//    @PostMapping("/{comment_id}")
-//    public ResponseEntity<CommentRequest> parentComment (
-//            @PathVariable(name = "comment_id") Long id,
-//            @RequestBody CommentRequest commentRequest
-//    ) {
-//
-//    }
 }
