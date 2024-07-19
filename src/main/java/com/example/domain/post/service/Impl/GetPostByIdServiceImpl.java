@@ -1,5 +1,6 @@
 package com.example.domain.post.service.Impl;
 
+import com.example.domain.comment.dto.response.CommentResponse;
 import com.example.domain.post.entity.PostEntity;
 import com.example.domain.post.repository.PostRepository;
 import com.example.domain.post.service.GetPostByIdService;
@@ -28,7 +29,12 @@ public class GetPostByIdServiceImpl implements GetPostByIdService {
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
                 .visit(postEntity.getVisit())
-                .comments(postEntity.getComments())
+                .comments(postEntity.getComments().stream().map(
+                        commentEntity -> new CommentResponse(
+                                commentEntity.getId(),
+                                commentEntity.getText()
+                        )
+                ).toList())
                 .build();
     }
 }

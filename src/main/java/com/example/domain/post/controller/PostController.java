@@ -33,7 +33,7 @@ public class PostController {
     @GetMapping("/{id}")
     public ResponseEntity<GetPostResponse> getPostById(@PathVariable("id") Long id) {
         GetPostResponse getPostResponse = getPostByIdService.execute(id);
-        return ResponseEntity.status(HttpStatus.OK).body(getPostResponse);
+        return ResponseEntity.ok(getPostResponse);
     }
 
     @GetMapping("/all")

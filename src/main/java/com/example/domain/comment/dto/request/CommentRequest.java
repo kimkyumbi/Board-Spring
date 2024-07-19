@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class CommentRequest {
+    @NotBlank
+    private Long postId;
 
     @NotBlank
     private String text;
