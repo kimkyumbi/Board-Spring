@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -45,7 +47,7 @@ public class SecurityConfig {
         // 각 요청에 대한 권한 설정
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
-                        .requestMatchers("/**").authenticated() // 모든 요청에 대해 인증이 필요
+                        .requestMatchers("/**").permitAll() // 모든 요청에 대해 인증이 필요
         );
 
         // UsernamePasswordAuthenticationFilter 앞에 커스텀 필터인 JwtFilter 추가
@@ -78,5 +80,10 @@ public class SecurityConfig {
 
         // 경로 설정이 적용된 UrlBasedCorsConfiguationSource 객체 반환
         return source;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }

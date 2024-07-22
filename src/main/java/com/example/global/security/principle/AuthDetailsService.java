@@ -20,7 +20,7 @@ public class AuthDetailsService implements UserDetailsService {
     // 파라미터로 받은 userId로 UserDetails 객체를 생성하는 메서드
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         // UserEntity 객체를 생성하고 userRepository에서 findByUserId 메서드로 String으로 받은 userId를 Long으로 형변환해 객체에 저장
-        UserEntity user = userRepository.findByUserId(Long.valueOf(userId))
+        UserEntity user = userRepository.findByEmail(userId)
                 // 유저를 찾지 못했을 때 예외 처리
                 .orElseThrow(() -> new ExpectedException("유저를 찾을 수 없습니다", HttpStatus.NOT_FOUND));
 
