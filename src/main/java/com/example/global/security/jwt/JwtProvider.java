@@ -50,9 +50,9 @@ public class JwtProvider {
 
         return Jwts.builder()
                 .signWith(signingKey)
-                .setSubject(String.valueOf(id))
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + expired))
+                .subject(String.valueOf(id))
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + expired))
                 .compact();
     }
 
@@ -61,11 +61,11 @@ public class JwtProvider {
         byte[] keyBytes = Base64.getEncoder().encode(secretKey.getBytes());
         SecretKey signingKey = Keys.hmacShaKeyFor(keyBytes);
 
-        return Jwts.parserBuilder()
-                .setSigningKey(signingKey)
+        return Jwts.parser()
+                .verifyWith(signingKey)
                 .build()
-                .parseClaimsJws(token)
-                .getBody()
+                .parseSignedClaims(token)
+                .getPayload()
                 .getExpiration()
                 .before(new Date());
     }
@@ -86,26 +86,34 @@ public class JwtProvider {
         return getClaims(subject).getSubject();
     }
 
-    // 토큰의 Claims 객체를 생성해 Body를 추출하는 메서드
+    // 토큰에서 Claims 객체를 추출하는 메서드
     public Claims getClaims(String token) {
+        // Base64 인코더를 사용하여 secretKey를 바이트 배열로 변환
         byte[] keyBytes = Base64.getEncoder().encode(secretKey.getBytes());
+
+        // secretKey 바이트 배열을 사용하여 HMAC-SHA 키 객체 생성
         SecretKey signingKey = Keys.hmacShaKeyFor(keyBytes);
 
         try {
-            return Jwts.parserBuilder()
-                    .setSigningKey(signingKey)
-                    .build()
-                    .parseClaimsJws(token)
-                    .getBody();
+            return Jwts.parser() // JWT 토큰을 파싱하고 Claims 객체를 추출
+                    .verifyWith(signingKey) // 서명 키 설정
+                    .build() // 파서 빌드
+                    .parseSignedClaims(token) // 토큰 파싱 및 Claims JWS 얻기
+                    .getPayload(); // Claims 객체의 Body 부분 추출
         } catch (ExpiredJwtException e) {
+            // 토큰이 만료된 경우 예외 처리
             throw new ExpectedException("만료된 토큰입니다.", HttpStatus.UNAUTHORIZED);
         } catch (UnsupportedJwtException e) {
+            // 지원되지 않는 형식의 JWT 토큰인 경우 예외 처리
             throw new ExpectedException("형식이 일치하지 않는 토큰입니다.", HttpStatus.FORBIDDEN);
         } catch (MalformedJwtException e) {
+            // 구성 요소가 잘못된 JWT 토큰인 경우 예외 처리
             throw new ExpectedException("올바르지 않은 구성의 토큰입니다.", HttpStatus.FORBIDDEN);
         } catch (SignatureException e) {
+            // 서명 검증에 실패한 JWT 토큰인 경우 예외 처리
             throw new ExpectedException("서명을 확인할 수 없는 토큰입니다.", HttpStatus.FORBIDDEN);
         } catch (RuntimeException e) {
+            // 기타 런타임 예외 발생 시 예외 처리
             throw new ExpectedException("알 수 없는 토큰입니다.", HttpStatus.FORBIDDEN);
         }
     }
