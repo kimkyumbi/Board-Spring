@@ -6,6 +6,7 @@ import com.example.domain.post.service.GetAllPostsService;
 import com.example.domain.post.dto.response.PostDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,7 +15,11 @@ import java.util.List;
 public class GetAllPostsServiceImpl implements GetAllPostsService {
     private final PostRepository postRepository;
 
-    // 게시물 리스트를 반환하는 메서드
+    /**
+     * 게시글 리스트를 반환하는 비즈니스 로직
+     */
+    @Override
+    @Transactional
     public List<PostDTO> getAllPost() {
         // PostEntity 객체를 List로 생성하고 postRepository에서 모든 게시물을 가져옴
         List<PostEntity> postEntities = postRepository.findAll();
