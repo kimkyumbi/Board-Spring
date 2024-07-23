@@ -4,6 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * 게시글 수정을 위한 DTO
+ */
 @Getter
 @NoArgsConstructor
 public class PatchPostRequest {
