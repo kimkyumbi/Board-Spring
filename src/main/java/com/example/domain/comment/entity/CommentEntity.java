@@ -7,8 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
+/**
+ * 댓글 엔티티
+ */
 @Entity
 @Getter
 @Builder
@@ -23,7 +24,9 @@ public class CommentEntity {
     @Column(name = "text")
     private String text;
 
+    // 다대일 연관관계 매핑
     @ManyToOne
+    // post 엔티티의 id와 조인
     @JoinColumn(name = "post_id")
     private PostEntity post;
 }
