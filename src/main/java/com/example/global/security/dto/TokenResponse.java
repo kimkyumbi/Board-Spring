@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * 토큰을 반환하기 위한 DTO
+ */
 @Getter
 @Builder
 @AllArgsConstructor
