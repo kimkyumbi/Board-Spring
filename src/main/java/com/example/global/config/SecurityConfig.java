@@ -82,6 +82,7 @@ public class SecurityConfig {
         return source;
     }
 
+    // PasswordEncoder를 스프링 빈으로 등록
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
