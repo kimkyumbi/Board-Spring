@@ -4,6 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * 댓글 작성을 위한 DTO
+ */
 @Getter
 @NoArgsConstructor
 public class CommentRequest {
