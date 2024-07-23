@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class AuthDetailsService implements UserDetailsService {
@@ -18,9 +20,9 @@ public class AuthDetailsService implements UserDetailsService {
 
     @Override // UserDetailsService 구현체로서 loadUserByUsername 메서드 오버라이드
     // 파라미터로 받은 userId로 UserDetails 객체를 생성하는 메서드
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
         // UserEntity 객체를 생성하고 userRepository에서 findByUserId 메서드로 String으로 받은 userId를 Long으로 형변환해 객체에 저장
-        UserEntity user = userRepository.findByEmail(userId)
+        UserEntity user = userRepository.findById(UUID.fromString(id))
                 // 유저를 찾지 못했을 때 예외 처리
                 .orElseThrow(() -> new ExpectedException("유저를 찾을 수 없습니다", HttpStatus.NOT_FOUND));
 
