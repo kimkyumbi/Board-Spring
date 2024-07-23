@@ -2,6 +2,7 @@ package com.example.global.exception;
 
 import org.springframework.http.HttpStatus;
 
+// ExpectedException이랑 똑같아용
 public class TokenException extends RuntimeException {
     private final HttpStatus statusCode;
 
