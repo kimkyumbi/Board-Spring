@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+/**
+ * 유저 엔티티
+ */
 @Entity
 @Getter
 @Builder
@@ -18,6 +21,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(generator = "uuid2")
     @Column(name = "user_id")
+    // UUID 사용
     private UUID id;
 
     @Column(name = "user_email")
