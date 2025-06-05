@@ -35,6 +35,7 @@ public class GetPostByIdServiceImpl implements GetPostByIdService {
         return GetPostResponse.builder()
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
+                .createdAt(postEntity.getCreatedAt())
                 .visit(postEntity.getVisit())
                 .comments(postEntity.getComments().stream().map(
                         commentEntity -> new CommentResponse(

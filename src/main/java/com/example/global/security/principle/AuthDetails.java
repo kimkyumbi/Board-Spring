@@ -20,7 +20,7 @@ public class AuthDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(user.getRole().getAuthority()));
-        log.info(authorities.toString());
+//        log.info(authorities.toString());
         return authorities;
     }
 

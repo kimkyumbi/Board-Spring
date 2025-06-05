@@ -25,7 +25,11 @@ public class PostEntity {
     private String title;
 
     @Column(nullable = false)
+    private String createdAt;
+
+    @Column(nullable = false)
     private String content;
+
     private int visit;
 
     /**
