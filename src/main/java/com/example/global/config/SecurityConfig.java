@@ -47,7 +47,7 @@ public class SecurityConfig {
         // 각 요청에 대한 권한 설정
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
-                        .requestMatchers("/**").permitAll() // 모든 요청에 대해 인증이 필요
+                        .requestMatchers("/**").permitAll()
         );
 
         // UsernamePasswordAuthenticationFilter 앞에 커스텀 필터인 JwtFilter 추가
