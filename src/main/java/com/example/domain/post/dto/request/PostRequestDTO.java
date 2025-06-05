@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 /**
  * 게시글을 작성하기 위한 DTO
  */
@@ -16,4 +18,6 @@ public class PostRequestDTO {
 
     @NotBlank
     private String content;
+
+    private String createdAt;
 }

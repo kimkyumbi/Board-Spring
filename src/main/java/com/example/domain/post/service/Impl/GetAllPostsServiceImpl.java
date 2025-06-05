@@ -28,6 +28,7 @@ public class GetAllPostsServiceImpl implements GetAllPostsService {
         return postEntities.stream().map(postEntity -> new PostDTO(
                 postEntity.getId(),    // 게시물 아이디
                 postEntity.getTitle(), // 게시물 제목
+                postEntity.getCreatedAt(), // 게시물 작성 시간
                 postEntity.getVisit()  // 게시물 조회수
         )).toList();
     }

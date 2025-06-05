@@ -3,6 +3,7 @@ package com.example.domain.post.dto.response;
 import com.example.domain.comment.dto.response.CommentResponse;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ import java.util.List;
 public class GetPostResponse {
     private String title;
     private String content;
+    private String createdAt;
     private int visit;
     private List<CommentResponse> comments;
 }

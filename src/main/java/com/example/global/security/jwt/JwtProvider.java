@@ -3,8 +3,6 @@ package com.example.global.security.jwt;
 import com.example.domain.auth.dto.response.UserLoginResponse;
 import com.example.domain.user.enums.TokenType;
 import com.example.global.exception.ExpectedException;
-import com.example.global.exception.TokenException;
-import com.example.global.security.dto.TokenResponse;
 import com.example.global.security.principle.AuthDetailsService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
