@@ -67,7 +67,7 @@ public class SecurityConfig {
         // 자격 증멸 포함 여부 설정
         configuration.setAllowCredentials(true);
         // 접근을 허용할 Origin 설정 / http://localhost:8083과 http://localhost:8080에서의 접근 허용
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8083", "http://localhost:8080", "http://localhost:3000"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8083", "http://localhost:8080", "http://localhost:3000", "http://localhost:3001"));
         // 접근을 허용할 HTTP 메서드 설정 / GET, POST, PUT, DELETE, OPTIONS 허용
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         // Pre-flight 요청의 캐시 지속 시간을 설정 / 6400초 동안 캐시
