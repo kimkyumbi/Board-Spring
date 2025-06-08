@@ -18,6 +18,4 @@ public class PostRequestDTO {
 
     @NotBlank
     private String content;
-
-    private String createdAt;
 }
